@@ -1,21 +1,22 @@
-var BasePage = require('./basePage.js');
+var BasePage = require('./basePage.js'),
+    inheritance = require('../../helpers/inheritance');
 
 var email = '444test11123@test.com',
     password = '123456789.';
 
 var SigninPage = function() {
-    this.locators = {
-        email: $('input#txtUserNameOrEmail'),
-        password: $('input#password'),
+    this.elements = {
+        emailInput: $('input#txtUserNameOrEmail'),
+        passwordInput: $('input#password'),
         form: $('form[name="signinForm"]')
     };
-};
-SigninPage.prototype = new BasePage();
 
-SigninPage.prototype.fillFormSubmit = function() {
-    return this.fillInput(this.locators.email, email)
-    	.then(() => this.fillInput(this.locators.password, password))
-        .then(() => this.locators.form.submit());
+    this.fillFormSubmit = function() {
+        return this.fillInput(this.elements.emailInput, email)
+            .then(() => this.fillInput(this.elements.passwordInput, password))
+            .then(() => this.elements.form.submit());
+    };
 };
 
+inheritance.inherits(BasePage, SigninPage);
 module.exports = SigninPage;

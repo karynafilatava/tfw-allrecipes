@@ -1,19 +1,21 @@
-var BasePage = require('./basePage.js');
+var BasePage = require('./basePage'),
+    inheritance = require('../../helpers/inheritance');
 
 var SearchPage = function() {
-    this.locators = {
+    this.elements = {
         queryResults: $('*.search-results__text'),
         queryResultsIngridients: $('*.search-results__text--include')
     };
-};
-SearchPage.prototype = new BasePage();
 
-SearchPage.prototype.getResultsQuery = function() {
-    return this.locators.queryResults.getText();
-};
-SearchPage.prototype.getResultsIngridientsQuery = function() {
-    return this.locators.queryResultsIngridients.getText()
-    	.then((ingridients) => ingridients.match(/"([^"]*)"/g).toString().replace(/"/g, ""));
+    this.getResultsQuery = function() {
+        return this.elements.queryResults.getText();
+    };
+
+    this.getResultsIngridientsQuery = function() {
+        return this.elements.queryResultsIngridients.getText()
+            .then((ingridients) => ingridients.match(/"([^"]*)"/g).toString().replace(/"/g, ""));
+    };
 };
 
+inheritance.inherits(BasePage, SearchPage);
 module.exports = SearchPage;

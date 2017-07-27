@@ -38,7 +38,7 @@ Header.prototype.addIngridient = function(ingridient) {
 		.then(() => this.elements.ingridientAddButton.click());
 }
 Header.prototype.searchGo = function(searchType) {
-	
+
 	switch(searchType) {
 	case 'global':
 		return this.elements.searchGoGlobalButton.click();	
@@ -69,4 +69,4 @@ Header.prototype.signOut = function() {
 	return this.elements.signoutButton.click();
 };
 
-module.exports = new Header();
+module.exports = Header;

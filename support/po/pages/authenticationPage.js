@@ -1,14 +1,15 @@
-var BasePage = require('./basePage.js');
+var BasePage = require('./basePage'),
+    inheritance = require('../../helpers/inheritance');
 
 var AuthenticationPage = function() {
-    this.locators = {
-        signIn: by.cssContainingText('a.btns-one-large>span', 'Sign in.')
+    this.elements = {
+        signInLink: element(by.cssContainingText('a.btns-one-large>span', 'Sign in.'))
+    };
+
+    this.chooseToSignIn = function() {
+        return this.elements.signInLink.click();
     };
 };
-AuthenticationPage.prototype = new BasePage();
 
-AuthenticationPage.prototype.chooseToSignIn = function() {
-    return element(this.locators.signIn).click();
-};
-
+inheritance.inherits(BasePage, AuthenticationPage);
 module.exports = AuthenticationPage;

@@ -1,8 +1,9 @@
-var BasePage = require('./basePage.js');
+var BasePage = require('./basePage'),
+    inheritance = require('../../helpers/inheritance');
 
 var HomePage = function() {
     this.url = 'https://allrecipes.com';
 };
-HomePage.prototype = new BasePage();
 
+inheritance.inherits(BasePage, HomePage);
 module.exports = HomePage;

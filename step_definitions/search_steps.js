@@ -3,7 +3,7 @@ var { defineSupportCode } = require('cucumber');
 defineSupportCode(function({ Given, When, Then }) {
 
     When(/^I search '([^']*)' (globally|by ingridients)$/, function (query, searchType) {
-    	var searchPromise;
+    	var searchPromise = undefined;
     	switch(searchType) {
     	case 'globally':
     		searchPromise = this.pageFactory.currentPage.header.searchGlobal(query);
