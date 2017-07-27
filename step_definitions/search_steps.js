@@ -24,7 +24,8 @@ defineSupportCode(function({ Given, When, Then }) {
     		textPromise = this.pageFactory.currentPage.getResultsQuery();
     		break;
     	case ' ingridients':
-    		textPromise = this.pageFactory.currentPage.getResultsQuery();
+    		query = query.replace(" ", "");
+    		textPromise = this.pageFactory.currentPage.getResultsIngridientsQuery();
     		break;
     	};
     	return textPromise.should.eventually.include(query);
