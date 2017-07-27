@@ -1,5 +1,6 @@
-var { defineSupportCode } = require('cucumber');
-var pageFactory = require('./po/pages/pageFactory.js');
+"use strict";
+var { defineSupportCode } = require('cucumber'),
+	pageFactory = require('./po/pages/pageFactory.js');
 
 function CustomWorld() {
 	this.pageFactory = new pageFactory();

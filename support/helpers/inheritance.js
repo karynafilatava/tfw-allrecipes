@@ -1,3 +1,5 @@
+"use strict";
+
 var inheritance = {
     inherits: function(Parent,Child){
         var F = function(){};

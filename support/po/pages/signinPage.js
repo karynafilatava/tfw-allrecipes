@@ -1,3 +1,4 @@
+"use strict";
 var BasePage = require('./basePage.js'),
     inheritance = require('../../helpers/inheritance');
 
@@ -5,16 +6,17 @@ var email = '444test11123@test.com',
     password = '123456789.';
 
 var SigninPage = function() {
-    this.elements = {
+	var _this = this;
+    _this.elements = {
         emailInput: $('input#txtUserNameOrEmail'),
-        passwordInput: $('input#password'),
-        form: $('form[name="signinForm"]')
+        form: $('form[name="signinForm"]'),
+        passwordInput: $('input#password')
     };
 
-    this.fillFormSubmit = function() {
-        return this.fillInput(this.elements.emailInput, email)
-            .then(() => this.fillInput(this.elements.passwordInput, password))
-            .then(() => this.elements.form.submit());
+    _this.fillFormSubmit = function() {
+        return _this.fillInput(_this.elements.emailInput, email)
+            .then(() => _this.fillInput(_this.elements.passwordInput, password))
+            .then(() => _this.elements.form.submit());
     };
 };
 

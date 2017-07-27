@@ -1,13 +1,15 @@
+"use strict";
 var BasePage = require('./basePage'),
     inheritance = require('../../helpers/inheritance');
 
 var AuthenticationPage = function() {
-    this.elements = {
+	var _this = this;
+    _this.elements = {
         signInLink: element(by.cssContainingText('a.btns-one-large>span', 'Sign in.'))
     };
 
-    this.chooseToSignIn = function() {
-        return this.elements.signInLink.click();
+    _this.chooseToSignIn = function() {
+        return _this.elements.signInLink.click();
     };
 };
 

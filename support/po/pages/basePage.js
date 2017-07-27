@@ -1,8 +1,9 @@
+"use strict";
 var Header = require('../common/header.js');
 
 var BasePage = function() {};
 
-BasePage.prototype.header = new Header();
+BasePage.prototype.header = Header;
 
 BasePage.prototype.navigate = function(site) {
     return browser.get(site || this.url);

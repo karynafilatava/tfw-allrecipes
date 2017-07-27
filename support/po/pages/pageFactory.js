@@ -1,3 +1,4 @@
+"use strict";
 var HomePage = require('./homePage'),
     SigninPage = require('./signinPage'),
     AuthenticationPage = require('./authenticationPage'),
@@ -14,7 +15,6 @@ var PageFactory = function() {
     this.currentPage = undefined;
 
     this.getPage = function(page) {
-
         if (!pages[page]) {
             throw new Error('Wrong page name: ' + page);
         }
