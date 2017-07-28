@@ -9,16 +9,15 @@ exports.config = {
     cucumberOpts : {
         require : [
             'support/world.js',
-            'step_definitions/*.js',
+            'step_definitions/*_steps.js',
+            'step_definitions/hooks.js'
         ],
-        format : 'pretty',
-        tags: ['@user', '@search']
+        //format : 'pretty',
+        tags: ['@user', '@search', '@browseRecipe', '@all']
     },
     onPrepare : function() {
         var chai = require('chai');
             chaiAsPromised = require('chai-as-promised');
-        
-        expect = chai.expect;
         should = chai.should();
         chai.use(chaiAsPromised);
         browser.manage().window().setSize(1200, 900);

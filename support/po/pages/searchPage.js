@@ -1,9 +1,11 @@
 "use strict";
 var BasePage = require('./basePage'),
+    RecipesList = require('../common/recipesList'),
     inheritance = require('../../helpers/inheritance');
 
 var SearchPage = function() {
 	var _this = this;
+    _this.recipesList = new RecipesList();
     _this.elements = {
         queryResults: $('*.search-results__text'),
         queryResultsIngridients: $('*.search-results__text--include')

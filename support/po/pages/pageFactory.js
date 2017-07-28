@@ -1,25 +1,29 @@
 "use strict";
-var HomePage = require('./homePage'),
-    SigninPage = require('./signinPage'),
-    AuthenticationPage = require('./authenticationPage'),
-    SearchPage = require('./searchPage');
+var AuthenticationPage = require('./authenticationPage'),
+    HomePage = require('./homePage'),
+    RecipePage = require('./recipePage'),
+    SearchPage = require('./searchPage'),
+    SigninPage = require('./signinPage');
+    
 
 var PageFactory = function() {
+    var _this = this;
     var pages = {
-        'home': HomePage,
-        'signin': SigninPage,
         'authentication': AuthenticationPage,
-        'search': SearchPage
+        'home': HomePage,
+        'recipe': RecipePage,
+        'search': SearchPage,
+        'signin': SigninPage
     };
 
-    this.currentPage = undefined;
+    _this.currentPage = undefined;
 
-    this.getPage = function(page) {
+    _this.getPage = function(page) {
         if (!pages[page]) {
             throw new Error('Wrong page name: ' + page);
         }
-        this.currentPage = new pages[page]();
-        return this.currentPage;
+        _this.currentPage = new pages[page]();
+        return _this.currentPage;
     };
 };
 

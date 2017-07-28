@@ -6,7 +6,8 @@
     "start-webdriver": "webdriver-manager start",
     "protractor-search": "protractor protractor-conf.js --cucumberOpts.tags @search",
     "protractor-user": "protractor protractor-conf.js --cucumberOpts.tags @user",
-    "protractor": "protractor protractor-conf.js"    
+    "protractor-recipe": "protractor protractor-conf.js --cucumberOpts.tags @browseRecipe",
+    "protractor": "protractor protractor-conf.js --cucumberOpts.tags  "    
   },
   "devDependencies": {
     "chai": "^4.1.0",

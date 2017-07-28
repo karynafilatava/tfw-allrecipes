@@ -5,11 +5,13 @@ var BasePage = require('./basePage'),
 var AuthenticationPage = function() {
 	var _this = this;
     _this.elements = {
-        signInLink: element(by.cssContainingText('a.btns-one-large>span', 'Sign in.'))
+    	links: {
+	        signIn: element(by.cssContainingText('a.btns-one-large>span', 'Sign in.'))
+    	}
     };
 
     _this.chooseToSignIn = function() {
-        return _this.elements.signInLink.click();
+        return _this.elements.links.signIn.click();
     };
 };
 

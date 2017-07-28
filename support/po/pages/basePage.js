@@ -3,15 +3,14 @@ var Header = require('../common/header.js');
 
 var BasePage = function() {};
 
-BasePage.prototype.header = Header;
+BasePage.prototype.header = new Header();
 
-BasePage.prototype.navigate = function(site) {
-    return browser.get(site || this.url);
+BasePage.prototype.navigate = function(url) {
+    return browser.get(url || this.url);
 };
 
-BasePage.prototype.fillInput = function(element, text) {
-	return element.clear()
-		.then(() => element.sendKeys(text));
+BasePage.prototype.getTitle = function() {
+	return browser.getTitle();	
 };
 
 module.exports = BasePage;

@@ -1,12 +1,14 @@
 "use strict";
-var EC = protractor.ExpectedConditions;
+var EC = protractor.ExpectedConditions,
+	extensions = require('../../extensions/browserExtensions');;
 
 var Header = function() {
-    this.elements = {
+	var _this = this;
+    _this.elements = {
         dropdownNavProfile: $('*.login-state.authenticated-user'),
         recognizedUser: $('*.nav-profile.recognized-user'),
        	signedUser: $('*.login-state.authenticated-user'),
-        username: $('*.nav-profile>a>div>span.username'),
+        username: $('*.username'),
         buttons: { 
         	ingridientAdd: $('a.include'),
         	ingridientsSearch: $('*.ingredient-searchtxt'),
@@ -22,61 +24,58 @@ var Header = function() {
         	navProfile: $('*.nav-profile>a')
         }
     };
+
+    _this.searchGlobal = function(query) {
+		return extensions.fillInput(_this.elements.inputs.globalSearch, query)
+			.then(() => _this.searchGo('global'));
+	};
+
+	_this.searchIngridients = function(queryArray) {
+		return _this.elements.buttons.ingridientsSearch.click() 
+			.then(() => queryArray.forEach((ingridient) => _this.addIngridient(ingridient)))
+			.then(() => _this.searchGo('ingridients'));
+	};
+	
+	_this.addIngridient = function(ingridient) {
+		return extensions.fillInput(_this.elements.inputs.ingridientAdd, ingridient)
+			.then(() => _this.elements.buttons.ingridientAdd.click());
+	};
+
+	_this.searchGo = function(searchType) {
+		switch(searchType) {
+		case 'global':
+			return _this.elements.buttons.searchGoGlobal.click();	
+		case 'ingridients':
+			return _this.elements.buttons.searchGoIngridients.click();	
+		default: throw new Error('Unrecognized search type: ' + searchType);
+		}
+	};
+
+	_this.clickNavProfile = function() {
+	    return _this.elements.links.navProfile.click();
+	};
+	
+	_this.showDropdownNavProfile = function() {
+		return _this.elements.dropdownNavProfile.click();
+	};
+	
+	_this.signOut = function() {
+		return _this.elements.buttons.signout.click();
+	};
+
+	_this.check = function(type) {
+		switch(type) {
+		case 'recognized':
+			return extensions.waitForPresence(_this.elements.recognizedUser);
+		case 'signed':
+			return extensions.waitForPresence(_this.elements.signedUser);
+		case 'username':
+			var usernameIsNotSignIn = EC.not(EC.textToBePresentInElement(_this.elements.username, 'Sign In'));
+			var usernameIsNotCreateAccount = EC.not(EC.textToBePresentInElement(_this.elements.username, 'Create account'));
+			return browser.wait(EC.and(usernameIsNotSignIn, usernameIsNotCreateAccount), 1000);
+		default: throw new Error('Unrecognized check type: ' + type);
+		}
+	};
 };
 
-Header.prototype.searchGlobal = function(query) {
-	return this.elements.inputs.globalSearch.clear()
-		.then(() => this.elements.inputs.globalSearch.sendKeys(query))
-		.then(() => this.searchGo('global'));
-};
-
-Header.prototype.searchIngridients = function(queryArray) {
-	return this.elements.buttons.ingridientsSearch.click() 
-		.then(() => queryArray.forEach((ingridient) => this.addIngridient(ingridient)))
-		.then(() => this.searchGo('ingridients'));
-};
-
-Header.prototype.addIngridient = function(ingridient) {
-	return this.elements.inputs.ingridientAdd.clear()
-		.then(() => this.elements.inputs.ingridientAdd.sendKeys(ingridient))
-		.then(() => this.elements.buttons.ingridientAdd.click());
-};
-
-Header.prototype.searchGo = function(searchType) {
-	switch(searchType) {
-	case 'global':
-		return this.elements.buttons.searchGoGlobal.click();	
-		break;
-	case 'ingridients':
-		return this.elements.buttons.searchGoIngridients.click();	
-		break;
-	}
-};
-
-Header.prototype.clickNavProfile = function() {
-    return this.elements.links.navProfile.click();
-};
-
-Header.prototype.checkSigned = function() {
-	return browser.wait(EC.presenceOf(this.elements.signedUser), 5000);
-};
-
-Header.prototype.checkRecognized = function() {
-	return browser.wait(EC.presenceOf(this.elements.recognizedUser), 5000);
-};
-
-Header.prototype.checkUsername = function() {
-	var usernameIsNotSignIn = EC.not(EC.textToBePresentInElement(this.elements.username, 'Sign In'));
-	var usernameIsNotCreateAccount = EC.not(EC.textToBePresentInElement(this.elements.username, 'Create account'));
-	return browser.wait(EC.and(usernameIsNotSignIn, usernameIsNotCreateAccount), 1000);
-};
-
-Header.prototype.showDropdownNavProfile = function() {
-	return this.elements.dropdownNavProfile.click();
-};
-
-Header.prototype.signOut = function() {
-	return this.elements.buttons.signout.click();
-};
-
-module.exports = new Header();
+module.exports = Header;
