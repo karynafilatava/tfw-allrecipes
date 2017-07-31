@@ -1,5 +1,4 @@
 "use strict";
-var extensions = require('../../extensions/browserExtensions');
 
 var RecipesList = function () {
 	var _this = this;
@@ -14,7 +13,7 @@ var RecipesList = function () {
 
 	_this.pickRecipe = function(index) {
 		var recipe = _this.elements.recipesNames.get(index);
-		return extensions.scrollClick(recipe);	
+		return recipe.scrollClick();	
 	};
 
 	_this.getRecipeName = function(index) {

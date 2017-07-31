@@ -4,7 +4,7 @@ var BasePage = require('./basePage'),
     inheritance = require('../../helpers/inheritance');
 
 var SearchPage = function() {
-	var _this = this;
+    var _this = this;
     _this.recipesList = new RecipesList();
     _this.elements = {
         queryResults: $('*.search-results__text'),

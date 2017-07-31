@@ -10,7 +10,7 @@ BasePage.prototype.navigate = function(url) {
 };
 
 BasePage.prototype.getTitle = function() {
-	return browser.getTitle();	
+    return browser.getTitle();
 };
 
 module.exports = BasePage;

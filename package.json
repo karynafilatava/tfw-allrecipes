@@ -1,22 +1,14 @@
 {
-  "name": "protractor-cucumber_allrecipes",
-  "version": "1.0.0",
-  "scripts": {
-    "prestart-webdriver": "webdriver-manager update",
-    "start-webdriver": "webdriver-manager start",
-    "protractor-search": "protractor protractor-conf.js --cucumberOpts.tags @search",
-    "protractor-user": "protractor protractor-conf.js --cucumberOpts.tags @user",
-    "protractor-recipe": "protractor protractor-conf.js --cucumberOpts.tags @browseRecipe",
-    "protractor": "protractor protractor-conf.js --cucumberOpts.tags  "
-  },
-  "devDependencies": {
-    "chai": "^4.1.0",
-    "chai-as-promised": "^7.1.1",
-    "cucumber": "^2.3.1",
-    "gulp": "^3.9.1",
-    "gulp-protractor": "^4.1.0",
-    "gulp-util": "^3.0.8",
-    "protractor": "^5.1.2",
-    "protractor-cucumber-framework": "^3.1.2"
-  }
+    "name": "protractor-cucumber_allrecipes",
+    "version": "1.0.0",
+    "devDependencies": {
+        "chai": "^4.1.0",
+        "chai-as-promised": "^7.1.1",
+        "cucumber": "^2.3.1",
+        "gulp": "^3.9.1",
+        "gulp-protractor": "^4.1.0",
+        "gulp-util": "^3.0.8",
+        "protractor": "^5.1.2",
+        "protractor-cucumber-framework": "^3.1.2"
+    }
 }

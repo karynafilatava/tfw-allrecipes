@@ -1,15 +1,12 @@
 "use strict";
 var BasePage = require('./basePage.js'),
-    inheritance = require('../../helpers/inheritance'),
-    extensions = require('../../extensions/browserExtensions');;
-
-
+    inheritance = require('../../helpers/inheritance');
 
 var SigninPage = function() {
-	var _this = this,
+    var _this = this,
         email = 'notreallymyemail@google.com',
         password = '123456789.';
-        
+
     _this.elements = {
         inputs: {
             email: $('input#txtUserNameOrEmail'),
@@ -19,8 +16,8 @@ var SigninPage = function() {
     };
 
     _this.fillFormSubmit = function() {
-        return extensions.fillInput(_this.elements.inputs.email, email)
-            .then(() => extensions.fillInput(_this.elements.inputs.password, password))
+        return _this.elements.inputs.email.fillInput(email)
+            .then(() => _this.elements.inputs.password.fillInput(password))
             .then(() => _this.elements.form.submit());
     };
 };
