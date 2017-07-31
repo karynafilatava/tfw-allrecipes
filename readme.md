@@ -34,7 +34,7 @@ Start selenium standalone server:
 webdriver-manager start
 ```
 
-Now you can run tests from local project directory:
+Now you can run tests from local project directory *(default browser is chrome, all scenarios would be executed without using --tag)*:
 ```
 gulp [--browser=<browser> | --tag=<tag>]
 ```
