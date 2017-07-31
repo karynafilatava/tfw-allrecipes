@@ -21,7 +21,7 @@ Feature: module 6 home task
     	Then I should see 'banana, chocolate' results
     		And I should see 'milk, ice' ingridients results
 
-    @browseRecipe
+    @browse
     Scenario: Choose recipe from results
         When I pick recipe from results
         Then I should see recipe name on page

@@ -1,9 +1,8 @@
 exports.config = {
+    //seleniumServerJar: './node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.4.0.jar',
     seleniumAddress: 'http://localhost:4444/wd/hub',
     specs: ['features/*.feature'],
-    capabilities: {
-        browserName: 'chrome',
-    },
+    capabilities: {'browserName': process.env.BROWSER},
     framework: 'custom',
     frameworkPath: require.resolve('protractor-cucumber-framework'),
     cucumberOpts : {
@@ -12,8 +11,7 @@ exports.config = {
             'step_definitions/*_steps.js',
             'step_definitions/hooks.js'
         ],
-        //format : 'pretty',
-        tags: ['@user', '@search', '@browseRecipe', '@all']
+        tags: ['@user', '@search', '@browse']
     },
     onPrepare : function() {
         var chai = require('chai');

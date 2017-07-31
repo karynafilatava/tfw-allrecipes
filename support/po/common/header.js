@@ -30,7 +30,8 @@ var Header = function() {
 			.then(() => _this.searchGo('global'));
 	};
 
-	_this.searchIngridients = function(queryArray) {
+	_this.searchIngridients = function(query) {
+		var queryArray = query.split(",");
 		return _this.elements.buttons.ingridientsSearch.click() 
 			.then(() => queryArray.forEach((ingridient) => _this.addIngridient(ingridient)))
 			.then(() => _this.searchGo('ingridients'));
@@ -42,13 +43,11 @@ var Header = function() {
 	};
 
 	_this.searchGo = function(searchType) {
-		switch(searchType) {
-		case 'global':
-			return _this.elements.buttons.searchGoGlobal.click();	
-		case 'ingridients':
-			return _this.elements.buttons.searchGoIngridients.click();	
-		default: throw new Error('Unrecognized search type: ' + searchType);
-		}
+		var goMethod = {
+			'global': 'searchGoGlobal',
+			'ingridients': 'searchGoIngridients'
+		};
+		return _this.elements.buttons[goMethod[searchType]].click();			
 	};
 
 	_this.clickNavProfile = function() {
@@ -73,7 +72,6 @@ var Header = function() {
 			var usernameIsNotSignIn = EC.not(EC.textToBePresentInElement(_this.elements.username, 'Sign In'));
 			var usernameIsNotCreateAccount = EC.not(EC.textToBePresentInElement(_this.elements.username, 'Create account'));
 			return browser.wait(EC.and(usernameIsNotSignIn, usernameIsNotCreateAccount), 1000);
-		default: throw new Error('Unrecognized check type: ' + type);
 		}
 	};
 };

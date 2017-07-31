@@ -16,17 +16,16 @@ defineSupportCode(function({ When, Then }) {
     });
 
     Then(/^I should be signed in and see username$/, function() {
-        var promiseCheck = this.pageFactory.currentPage.header.check('signed')
+        var promiseChecking = this.pageFactory.currentPage.header.check('signed')
             .then(() => this.pageFactory.currentPage.header.check('username'));
-        return promiseCheck.should.be.fulfilled;
+        return promiseChecking.should.be.fulfilled;
     });
 
     Then(/^I should be (unr|r)ecognized user$/, function(isRecognized) {
-        switch (isRecognized) {
-        case 'unr':
-            return this.pageFactory.currentPage.header.check('recognized').should.be.rejected;
-        case 'r':
-            return this.pageFactory.currentPage.header.check('recognized').should.be.fulfilled;
-        }
+        var shouldByRecognition = {
+            'r': 'fulfilled',
+            'unr': 'rejected'
+        };
+        return this.pageFactory.currentPage.header.check('recognized').should.be[shouldByRecognition[isRecognized]];
     });
 });

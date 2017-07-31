@@ -19,14 +19,11 @@ defineSupportCode(function({ When, Then }) {
     		.then(() => this.pageFactory.getPage('recipe'));
     });
 
-    Then(/^I should see recipe name (on page|in title)$/, function(checkPlace) {
-    	var checkRecipeNamePromise;
-    	switch(checkPlace) {
-    	case 'on page':
-    		checkRecipeNamePromise = this.pageFactory.currentPage.getRecipeName();
-    	case 'in title':
-    	    checkRecipeNamePromise = this.pageFactory.currentPage.getTitle();
-    	}
-    	return checkRecipeNamePromise.should.eventually.have.string(pickedRecipeName);
+    Then(/^I should see recipe name (on page|in title)$/, function(location) {
+    	var checkRecipeNameMethod = {
+    		'on page': 'getRecipeName',
+    		'in title': 'getTitle'
+    	};
+    	return this.pageFactory.currentPage[checkRecipeNameMethod[location]]().should.eventually.have.string(pickedRecipeName);
     });
 });

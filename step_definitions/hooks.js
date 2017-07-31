@@ -7,7 +7,7 @@ defineSupportCode(function({ After }) {
         return browser.executeScript('window.localStorage.clear();')
         	.then(function () {
                 browser.manage().deleteAllCookies();
-            });;
+            });
     });
 
 });
