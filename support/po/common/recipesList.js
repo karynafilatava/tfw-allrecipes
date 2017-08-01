@@ -12,13 +12,12 @@ var RecipesList = function () {
 	};
 
 	_this.pickRecipe = function(index) {
-		var recipe = _this.elements.recipesNames.get(index);
-		return recipe.scrollClick();	
+		return _this.elements.recipesNames.get(index).scrollClick();	
 	};
 
 	_this.getRecipeName = function(index) {
 		return _this.elements.recipesNames.get(index).getText();
-	}
+	};
 };
 
 module.exports = RecipesList;

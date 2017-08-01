@@ -11,7 +11,7 @@ var RecipePage = function() {
     _this.getRecipeName = function() {
         return _this.elements.recipeName.waitForPresence()
             .then(() => _this.elements.recipeName.getText());
-    }
+    };
 };
 
 inheritance.inherits(BasePage, RecipePage);

@@ -6,7 +6,6 @@ var SigninPage = function() {
     var _this = this,
         email = 'notreallymyemail@google.com',
         password = '123456789.';
-
     _this.elements = {
         inputs: {
             email: $('input#txtUserNameOrEmail'),
