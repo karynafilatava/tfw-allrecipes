@@ -14,13 +14,13 @@ defineSupportCode(function({ When, Then }) {
 
     Then(/^I should see '([^']*)'(| ingridients) results$/, function(query, searchType) {
         var checkQueryMethod = {
-                '': 'getResultsQuery',
-                ' ingridients': 'getResultsIngridientsQuery'
-            },
+            '': 'getResultsQuery',
+            ' ingridients': 'getResultsIngridientsQuery'
+        },
             queryByType = {
-                '': query,
-                ' ingridients': query.replace(" ", "")
-            };
+            '': query,
+            ' ingridients': query.replace(" ", "")
+        };
         return this.pageFactory.currentPage[checkQueryMethod[searchType]]().should.eventually.include(queryByType[searchType]);
     });
 });

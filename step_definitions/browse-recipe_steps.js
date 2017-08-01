@@ -8,8 +8,8 @@ defineSupportCode(function({ When, Then }) {
     When(/^I pick recipe from results$/, function() {
         var index;
         return this.pageFactory.currentPage.recipesList.getResultsCount()
-            .then((recipesAmount) => {
-                index = Math.floor(Math.random() * recipesAmount);
+            .then((recipesAmountOnPage) => {
+                index = Math.floor(Math.random() * recipesAmountOnPage);
                 return this.pageFactory.currentPage.recipesList.getRecipeName(index);
             })
             .then((recipeName) => {
