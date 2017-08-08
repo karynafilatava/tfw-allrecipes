@@ -9,11 +9,11 @@ Feature: main actions
 
     @search
     Scenario: Global search - ingridient search
-    	When I search 'banana, chocolate' globally
+    	When I search 'banana, chocolate' 'globally'
     	Then I should see 'banana, chocolate' results
-    	When I search 'milk, ice' by ingridients
+    	When I search 'milk, ice' 'by ingridients'
     	Then I should see 'banana, chocolate' results
-    		And I should see 'milk, ice' ingridients results
+    		And I should see 'milk, ice' 'ingridients' results
 
     @browse
     Scenario: Choose recipe from results
