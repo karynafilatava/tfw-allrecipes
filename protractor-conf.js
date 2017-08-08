@@ -9,8 +9,7 @@ exports.config = {
             'support/*.js',
             'step_definitions/*_steps.js',
             'step_definitions/hooks.js'
-        ],
-        tags: ['@user', '@search', '@browse']
+        ]
     },
     onPrepare: function() {
         var chai = require('chai');
