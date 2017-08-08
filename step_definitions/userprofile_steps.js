@@ -21,10 +21,10 @@ defineSupportCode(function({ When, Then }) {
         return promiseChecking.should.be.fulfilled;
     });
 
-    Then(/^I should be (unr|r)ecognized user$/, function(isRecognized) {
+    Then(/^I should be '(unrecognized|recognized)' user$/, function(isRecognized) {
         var shouldByRecognition = {
-            'r': 'fulfilled',
-            'unr': 'rejected'
+            'recognized': 'fulfilled',
+            'unrecognized': 'rejected'
         };
         return this.pageFactory.currentPage.header.check('recognized').should.be[shouldByRecognition[isRecognized]];
     });
